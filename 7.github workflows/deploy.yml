@@ -45,17 +45,24 @@ jobs:
               {
                 "task_key": "bronze",
                 "notebook_task": {
-                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/01_bronze"
+                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/2.Ingestar Matriculados"
                 },
                 "environment_key": "default"
               },
+              {
+                "task_key": "bronze",
+                "notebook_task": {
+                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/2.Ingestar Placement"
+                },
+                "environment_key": "default"
+              },              
               {
                 "task_key": "silver",
                 "depends_on": [
                   {"task_key": "bronze"}
                 ],
                 "notebook_task": {
-                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/02_silver"
+                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/3.Transform"
                 },
                 "environment_key": "default"
               },
@@ -65,18 +72,10 @@ jobs:
                   {"task_key": "silver"}
                 ],
                 "notebook_task": {
-                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/03_gold"
+                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/4.Load"
                 },
                 "environment_key": "default"
               },
-              {
-                "task_key": "modelo_dimensional",
-                "depends_on": [
-                  {"task_key": "gold"}
-                ],
-                "notebook_task": {
-                  "notebook_path": "/Shared/academic_lakehouse_prod/proceso/04_modelo_dimensional"
-                },
                 "environment_key": "default"
               }
             ],
